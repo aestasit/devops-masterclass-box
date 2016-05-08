@@ -1,6 +1,11 @@
 {
   "provisioners": [
     {
+      "type": "file",
+      "source": "docker",
+      "destination": "/tmp/docker"
+    },
+    {
       "type": "shell",
       "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'",
       "override": {
@@ -9,10 +14,10 @@
             "scripts/base.sh",
             "scripts/vagrant.sh",
             "scripts/virtualbox.sh",
+            "scripts/puppet.sh",
             "scripts/ansible.sh",
             "scripts/chef.sh",
             "scripts/docker.sh",
-            "scripts/puppet.sh",
             "scripts/cleanup.sh",
             "scripts/zerodisk.sh"
           ]
