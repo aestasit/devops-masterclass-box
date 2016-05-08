@@ -1,5 +1,6 @@
 #!/bin/bash -e
 
+echo "*** Cleaning up APT caches ***"
 apt-get -y autoremove
 apt-get -y clean
 

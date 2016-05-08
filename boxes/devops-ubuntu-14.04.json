@@ -25,7 +25,7 @@
       "type": "vagrant",
       "override": {
         "virtualbox": {
-          "output": "devops-ubuntu-14-04-x64-virtualbox-{{isotime \"2006-01-02\"}}.box"
+          "output": "output/devops-ubuntu-14-04-x64-virtualbox-{{isotime \"2006-01-02\"}}.box"
         }
       }
     }
