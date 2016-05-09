@@ -36,8 +36,12 @@ docker pull ruby:2.2.5
 docker pull ruby:2.3.1
 docker pull python:2.7.11
 docker pull python:3.5.1
+docker pull nate/dockviz
+
+echo "*** Install utilities ***"
+apt-get install -y -q graphviz
 
 echo "*** Building Docker images ***"
-docker build -f /tmp/ubuntu-14.04-puppet.Dockerfile --tag=devops-puppet:1.0 .
-docker build -f /tmp/ubuntu-14.04-ansible.Dockerfile --tag=devops-ansible:1.0 .
-docker build -f /tmp/ubuntu-14.04-chef.Dockerfile --tag=devops-chef:1.0 .
+# docker build -f /tmp/docker/ubuntu-14.04-puppet.Dockerfile --tag=devops-puppet:1.0 /tmp/docker
+# docker build -f /tmp/docker/ubuntu-14.04-ansible.Dockerfile --tag=devops-ansible:1.0 /tmp/docker
+# docker build -f /tmp/docker/ubuntu-14.04-chef.Dockerfile --tag=devops-chef:1.0 /tmp/docker
