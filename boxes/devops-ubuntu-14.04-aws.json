@@ -1,0 +1,36 @@
+{
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "docker",
+      "destination": "/tmp/docker"
+    },
+    {
+      "type": "shell",
+      "execute_command": "sudo -S sh '{{.Path}}'",
+      "override": {
+        "amazon-ebs": {
+          "scripts": [
+            "scripts/base.sh",
+            "scripts/puppet.sh",
+            "scripts/ansible.sh",
+            "scripts/chef.sh",
+            "scripts/docker.sh",
+            "scripts/cleanup.sh",
+            "scripts/zerodisk.sh"
+          ]
+        }
+      }
+    }
+  ],
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "eu-west-1",
+      "source_ami": "ami-ed82e39e",
+      "instance_type": "m3.medium",
+      "ssh_username": "ubuntu",
+      "ami_name": "devops-ubuntu-14-04-x64 {{timestamp}}"
+    }
+  ]
+}
