@@ -5,6 +5,7 @@ curl -O https://apt.puppetlabs.com/puppetlabs-release-precise.deb
 dpkg -i puppetlabs-release-precise.deb
 apt-get -y update
 apt-get -y install puppet
+sed -i.bak '/templatedir/d' /etc/puppet/puppet.conf
 
 echo "*** Installing Puppet modules ***"
 cd /etc/puppet ; sudo puppet module install puppetlabs-stdlib
