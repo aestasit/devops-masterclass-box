@@ -2,6 +2,9 @@
 
 echo "*** Installing Ansible ***"
 apt-get -y install --reinstall ca-certificates
+apt-get -y install software-properties-common
+apt-add-repository -y ppa:ansible/ansible
+apt-get update
 apt-get -y install ansible
 
 echo "*** Installing Ansible roles ***"
