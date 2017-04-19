@@ -16,6 +16,7 @@
             "scripts/ansible.sh",
             "scripts/chef.sh",
             "scripts/docker.sh",
+            "scripts/docker-images.sh",
             "scripts/cleanup.sh",
             "scripts/zerodisk.sh"
           ]
