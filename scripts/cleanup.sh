@@ -1,8 +1,8 @@
-#!/bin/bash -e
+#!/bin/bash -e -x
 
 echo "*** Cleaning up APT caches ***"
-apt-get -y autoremove
-apt-get -y clean
+apt-get -y -qq autoremove -o=Dpkg::Use-Pty=0
+apt-get -y -qq clean -o=Dpkg::Use-Pty=0
 
 echo "*** Cleaning up guest additions ***"
 rm -rf VBoxGuestAdditions_*.iso VBoxGuestAdditions_*.iso.?

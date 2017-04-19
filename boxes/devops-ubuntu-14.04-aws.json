@@ -1,11 +1,6 @@
 {
   "provisioners": [
     {
-      "type": "file",
-      "source": "docker",
-      "destination": "/tmp/docker"
-    },
-    {
       "type": "shell",
       "execute_command": "sudo -S sh '{{.Path}}'",
       "override": {
@@ -16,7 +11,6 @@
             "scripts/ansible.sh",
             "scripts/chef.sh",
             "scripts/docker.sh",
-            "scripts/docker-images.sh",
             "scripts/cleanup.sh",
             "scripts/zerodisk.sh"
           ]

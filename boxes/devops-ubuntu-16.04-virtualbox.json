@@ -1,11 +1,6 @@
 {
   "provisioners": [
     {
-      "type": "file",
-      "source": "docker",
-      "destination": "/tmp/docker"
-    },
-    {
       "type": "shell",
       "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'",
       "override": {
@@ -66,9 +61,9 @@
       "disk_size": 40960,
       "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
-      "iso_checksum": "d2d939ca0e65816790375f6826e4032f",
+      "iso_checksum": "2bce60d18248df9980612619ff0b34e6",
       "iso_checksum_type": "md5",
-      "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.1-server-amd64.iso",
+      "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.2-server-amd64.iso",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,

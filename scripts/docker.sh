@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -e -x
 
 echo "*** Configuring locales ***"
 export DEBIAN_FRONTEND=noninteractive
@@ -8,20 +8,16 @@ export LC_ALL=en_US.UTF-8
 locale-gen en_US.UTF-8
 dpkg-reconfigure locales
 
-echo "*** Installing Docker ***"
-apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-mkdir -p /etc/apt/sources.list.d
-su -c "echo deb https://apt.dockerproject.org/repo ubuntu-trusty main > /etc/apt/sources.list.d/docker.list"
-apt-get update -q -y
-
 echo "*** Installing AUFS ***"
-apt-get -y install linux-image-extra-$(uname -r)
-apt-get install -y -q docker-engine
+apt-get -y -qq install -o=Dpkg::Use-Pty=0 linux-image-extra-$(uname -r) linux-image-extra-virtual
+
+echo "*** Installing Docker ***"
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+apt-get -y -qq update -o=Dpkg::Use-Pty=0
+apt-get -y -qq install -o=Dpkg::Use-Pty=0 docker-ce
 usermod -aG docker vagrant
 
 echo "*** Installing Docker Compose ***"
-su -c "curl -sSL https://github.com/docker/compose/releases/download/1.10.1/docker-compose-Linux-x86_64 > /usr/local/bin/docker-compose"
+su -c "curl -sSL https://github.com/docker/compose/releases/download/1.11.2/docker-compose-Linux-x86_64 > /usr/local/bin/docker-compose"
 chmod +x /usr/local/bin/docker-compose
-
-echo "*** Install utilities ***"
-apt-get install -y -q graphviz

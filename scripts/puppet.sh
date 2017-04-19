@@ -1,10 +1,11 @@
-#!/bin/bash -e
+#!/bin/bash -e -x
 
 echo "*** Installing Puppet ***"
-curl -O https://apt.puppetlabs.com/puppetlabs-release-precise.deb
-dpkg -i puppetlabs-release-precise.deb
-apt-get -y update
-apt-get -y install puppet
+curl -O https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
+dpkg -i puppetlabs-release-trusty.deb
+rm -rf puppetlabs-release*
+apt-get -y -qq update -o=Dpkg::Use-Pty=0
+apt-get -y -qq install -o=Dpkg::Use-Pty=0 puppet
 sed -i.bak '/templatedir/d' /etc/puppet/puppet.conf
 
 echo "*** Installing Puppet modules ***"
