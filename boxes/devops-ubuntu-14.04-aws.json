@@ -6,6 +6,7 @@
       "override": {
         "amazon-ebs": {
           "scripts": [
+            "scripts/aws.sh",
             "scripts/base.sh",
             "scripts/puppet.sh",
             "scripts/ansible.sh",
@@ -25,7 +26,7 @@
       "source_ami": "ami-dc4078ba",
       "instance_type": "m3.medium",
       "ssh_username": "ubuntu",
-      "ami_name": "devops-ubuntu-14-04-x64 {{timestamp}}"
+      "ami_name": "devops-ubuntu-14-04-x64 {{isotime \"2006-01-02\"}}"
     }
   ]
 }

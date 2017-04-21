@@ -5,4 +5,5 @@ curl -k -L -O "https://packages.chef.io/files/stable/chefdk/1.3.43/ubuntu/$(lsb_
 dpkg -i chefdk_*.deb
 rm -rf chefdk_*.deb
 
-
+echo "*** Checking Chef installation ***"
+chef-solo --version

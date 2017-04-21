@@ -1,15 +1,23 @@
 #!/bin/bash -e -x
 
 echo "*** Installing Puppet ***"
-curl -O https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
-dpkg -i puppetlabs-release-trusty.deb
-rm -rf puppetlabs-release*
+curl -O "https://apt.puppetlabs.com/puppetlabs-release-pc1-$(lsb_release -c -s).deb"
+dpkg -i puppetlabs-release-*.deb
+rm -rf puppetlabs-release-*
+
+touch /etc/apt/preferences
+mkdir -p /etc/apt/preferences.d
+cat >/etc/apt/preferences.d/puppetlabs.pref <<EOF
+Package: *
+Pin: origin apt.puppetlabs.com
+Pin-Priority: 1001
+EOF
+
+cat /etc/apt/preferences.d/puppetlabs.pref
+
 apt-get -y -qq update -o=Dpkg::Use-Pty=0
 apt-get -y -qq install -o=Dpkg::Use-Pty=0 puppet
 sed -i.bak '/templatedir/d' /etc/puppet/puppet.conf
 
-echo "*** Installing Puppet modules ***"
-cd /etc/puppet ; sudo puppet module install puppetlabs-stdlib
-cd /etc/puppet ; sudo puppet module install puppetlabs-concat
-cd /etc/puppet ; sudo puppet module install puppetlabs-apache
-cd /etc/puppet ; sudo puppet module install puppetlabs-mysql
+echo "*** Checking Puppet installation ***"
+puppet --version
