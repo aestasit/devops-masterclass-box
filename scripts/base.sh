@@ -21,7 +21,7 @@ apt-get -qq -y install -o=Dpkg::Use-Pty=0 zip wget curl mc links tree tofrodos g
 apt-get -qq -y install -o=Dpkg::Use-Pty=0 apt-transport-https ca-certificates software-properties-common
 
 apt-get -y -qq install -o=Dpkg::Use-Pty=0 python-pip
-apt-get -y -qq install -o=Dpkg::Use-Pty=0 libyaml-dev
+apt-get -y -qq install -o=Dpkg::Use-Pty=0 libyaml-dev python-dev
 apt-get -y -qq install -o=Dpkg::Use-Pty=0 python-yaml
 
 pip install --upgrade --user pip
