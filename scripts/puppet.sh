@@ -9,6 +9,8 @@ apt-get -y -qq install -o=Dpkg::Use-Pty=0 puppet-agent
 
 echo "*** Installing r10k ***"
 /opt/puppetlabs/puppet/bin/gem install r10k
+ln -s /opt/puppetlabs/puppet/bin/r10k /opt/puppetlabs/bin/r10k
 
 echo "*** Checking Puppet installation ***"
+/opt/puppetlabs/bin/r10k version
 /opt/puppetlabs/bin/puppet --version

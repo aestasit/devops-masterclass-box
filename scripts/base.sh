@@ -24,5 +24,4 @@ apt-get -y -qq install -o=Dpkg::Use-Pty=0 python-pip
 apt-get -y -qq install -o=Dpkg::Use-Pty=0 libyaml-dev python-dev
 apt-get -y -qq install -o=Dpkg::Use-Pty=0 python-yaml
 
-pip install --upgrade --user pip
-pip install --upgrade --user httpie
+apt-get -y -qq install -o=Dpkg::Use-Pty=0 httpie

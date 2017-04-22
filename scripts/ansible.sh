@@ -7,7 +7,7 @@ apt-get -y -qq install -o=Dpkg::Use-Pty=0 ansible
 
 echo "*** Configuring Ansible to run on localhost ***"
 echo 'localhost ansible_connection=local' > /etc/ansible/hosts
-
+ 
 echo "*** Checking Ansible installation ***"
 python --version
-ansible --version
+ansible --version && chown -R ubuntu:ubuntu /home/ubuntu/.ansible
