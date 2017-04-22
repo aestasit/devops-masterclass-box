@@ -10,4 +10,4 @@ echo 'localhost ansible_connection=local' > /etc/ansible/hosts
  
 echo "*** Checking Ansible installation ***"
 python --version
-ansible --version && chown -R ubuntu:ubuntu /home/ubuntu/.ansible
+ansible --version && chown -R "$(id -rn):$(id -rn)" "/home/$(id -rn)/.ansible"

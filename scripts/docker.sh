@@ -16,7 +16,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 apt-get -y -qq update -o=Dpkg::Use-Pty=0
 apt-get -y -qq install -o=Dpkg::Use-Pty=0 docker-ce
-usermod -aG docker vagrant
+usermod -aG docker "$(id -rn)"
 
 echo "*** Installing Docker Compose ***"
 su -c "curl -sSL https://github.com/docker/compose/releases/download/1.11.2/docker-compose-Linux-x86_64 > /usr/local/bin/docker-compose"
