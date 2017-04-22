@@ -6,12 +6,16 @@
       "override": {
         "amazon-ebs": {
           "scripts": [
-            "scripts/aws.sh",
+            "scripts/cloud-init.sh",
             "scripts/base.sh",
             "scripts/puppet.sh",
             "scripts/ansible.sh",
             "scripts/chef.sh",
             "scripts/docker.sh",
+            "scripts/aws-cli.sh",
+            "scripts/bats.sh",
+            "scripts/terraform.sh",
+            "scripts/groovy.sh",
             "scripts/cleanup.sh",
             "scripts/zerodisk.sh"
           ]

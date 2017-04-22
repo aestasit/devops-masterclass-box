@@ -13,6 +13,10 @@
             "scripts/ansible.sh",
             "scripts/chef.sh",
             "scripts/docker.sh",
+            "scripts/aws-cli.sh",
+            "scripts/bats.sh",
+            "scripts/terraform.sh",
+            "scripts/groovy.sh",
             "scripts/cleanup.sh",
             "scripts/zerodisk.sh"
           ]
