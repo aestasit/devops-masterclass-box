@@ -25,3 +25,5 @@ apt-get -y -qq install -o=Dpkg::Use-Pty=0 libyaml-dev python-dev
 apt-get -y -qq install -o=Dpkg::Use-Pty=0 python-yaml
 
 apt-get -y -qq install -o=Dpkg::Use-Pty=0 httpie
+apt-get -y -qq install -o=Dpkg::Use-Pty=0 fabric
+
