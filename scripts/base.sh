@@ -17,7 +17,7 @@ sed -i -e 's/%sudo  ALL=(ALL:ALL) ALL/%sudo  ALL=NOPASSWD:ALL/g' /etc/sudoers
 echo "UseDNS no" >> /etc/ssh/sshd_config
 
 echo "*** Installing tools ***"
-apt-get -qq -y install -o=Dpkg::Use-Pty=0 zip wget curl mc links tree tofrodos git jq
+apt-get -qq -y install -o=Dpkg::Use-Pty=0 zip wget curl mc links tree tofrodos git
 apt-get -qq -y install -o=Dpkg::Use-Pty=0 apt-transport-https ca-certificates software-properties-common
 
 apt-get -y -qq install -o=Dpkg::Use-Pty=0 python-pip
@@ -27,3 +27,5 @@ apt-get -y -qq install -o=Dpkg::Use-Pty=0 python-yaml
 apt-get -y -qq install -o=Dpkg::Use-Pty=0 httpie
 apt-get -y -qq install -o=Dpkg::Use-Pty=0 fabric
 
+wget --quiet --no-check-certificate https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 -O /usr/bin/jq
+chmod a+x /usr/bin/jq
