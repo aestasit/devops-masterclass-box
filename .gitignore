@@ -12,3 +12,4 @@ packer_cache/
 .gradle
 .vagrant
 build
+.terraform.tfstate.lock.info
