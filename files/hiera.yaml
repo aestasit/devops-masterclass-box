@@ -1,0 +1,11 @@
+---
+version: 5
+defaults:
+  datadir: hieradata
+  data_hash: yaml_data
+hierarchy:
+  - name: "YAML hierarchy levels"
+    paths:
+      - "groups/%{facts.group}.yaml"
+      - "os/%{facts.os.family}.yaml"
+      - "common.yaml"
