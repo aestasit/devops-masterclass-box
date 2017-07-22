@@ -29,16 +29,6 @@
       }
     }
   ],
-  "post-processors": [
-    {
-      "type": "vagrant",
-      "override": {
-        "virtualbox": {
-          "output": "output/devops-ubuntu-16-04-x64-virtualbox-{{isotime \"2006-01-02\"}}.box"
-        }
-      }
-    }
-  ],
   "builders": [
     {
       "type": "virtualbox-iso",
@@ -85,6 +75,16 @@
         [ "modifyvm", "{{.Name}}", "--memory", "2048" ],
         [ "modifyvm", "{{.Name}}", "--cpus", "2" ]
       ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "override": {
+        "virtualbox": {
+          "output": "output/devops-ubuntu-16-04-x64-virtualbox-{{isotime \"2006-01-02\"}}.box"
+        }
+      }
     }
   ]
 }
