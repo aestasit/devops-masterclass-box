@@ -11,3 +11,4 @@ packer_cache/
 *.backup
 .gradle
 .vagrant
+build

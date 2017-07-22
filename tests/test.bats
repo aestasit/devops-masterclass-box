@@ -18,15 +18,17 @@ setup() {
 }
 
 @test "verify puppet with modules" {
-  [ ! -f /tmp/test.file ]  
-  run /opt/puppetlabs/bin/puppet apply -e 'file { "/tmp/test.file": content => "abc" }'
-  echo "$output" > /tmp/puppet.output
+  run sudo /opt/puppetlabs/bin/puppet module install puppetlabs-apache --version 1.11.0
+  echo "$output" > /tmp/puppet-module.output
+  [ "$status" -eq 0 ]  
+  run sudo /opt/puppetlabs/bin/puppet apply -e 'include apache'
+  echo "=======================" >> /tmp/puppet-module.output
+  echo "$output" >> /tmp/puppet-module.output
   [ "$status" -eq 0 ]
-  [ -f /tmp/test.file ]
 }
 
 @test "verify r10k" {
-  run r10k 
+  run /opt/puppetlabs/bin/r10k 
   [ "$status" -eq 0 ]
 }
 

@@ -88,11 +88,23 @@ uploadTests.mustRunAfter createServer
 
 task runTests {
   doLast {
+    buildDir.mkdirs()
     remoteSession {
       user = project.getServerUser()
       host = project.getServerIp()
-      exec 'bats -t /tmp/test.bats'
-      exec 'cat /tmp/puppet.output'
+      def result = exec(command: 'bats -t /tmp/test.bats', failOnError: false)
+      scp {
+        from { 
+          remoteFile '/tmp/puppet.output'
+          remoteFile '/tmp/puppet-module.output'
+        }
+        into {
+          localDir buildDir
+        }
+      }
+      if (result.exitStatus != 0) {
+        throw new GradleException("BATS tests failed!")
+      }
     }
   }
 }
