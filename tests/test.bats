@@ -25,6 +25,8 @@ setup() {
   echo "=======================" >> /tmp/puppet-module.output
   echo "$output" >> /tmp/puppet-module.output
   [ "$status" -eq 0 ]
+  result="$(netstat -an | grep LISTEN | grep :80 | wc)"
+  [ "$result" -eq 1 ] 
 }
 
 @test "verify r10k" {
