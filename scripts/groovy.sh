@@ -1,7 +1,7 @@
 #!/bin/bash -e -x
 
 echo "*** Installing Java ***"
-curl -O http://cdn.azul.com/zulu/bin/zulu8.19.0.1-jdk8.0.112-linux_amd64.deb
+curl -O http://cdn.azul.com/zulu/bin/zulu8.21.0.1-jdk8.0.131-linux_amd64.deb
 apt-get -qq -y install -o=Dpkg::Use-Pty=0 java-common libasound2 libxi6 libxrender1 libxtst6 libfontconfig1
 dpkg -i zulu*.deb
 rm -rf zulu*
