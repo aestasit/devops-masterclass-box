@@ -12,5 +12,7 @@ echo "*** Installing r10k ***"
 ln -s /opt/puppetlabs/puppet/bin/r10k /opt/puppetlabs/bin/r10k
 
 echo "*** Checking Puppet installation ***"
+cp /tmp/files/hiera.yml /opt/puppetlabs
+cp /tmp/files/hiera.yml /etc/puppet
 /opt/puppetlabs/bin/r10k version
 /opt/puppetlabs/bin/puppet --version
