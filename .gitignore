@@ -7,3 +7,6 @@ packer_cache/
 *.log
 
 
+*.tfstate
+*.backup
+.gradle

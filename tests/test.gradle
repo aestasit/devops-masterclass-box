@@ -1,0 +1,80 @@
+
+import groovy.json.JsonSlurper
+
+buildscript {
+  repositories { 
+    mavenCentral() 
+  }
+  dependencies { 
+    classpath 'com.aestasit.infrastructure.sshoogr:sshoogr:0.9.18'
+    classpath 'com.aestasit.infrastructure.sshoogr:sshoogr-gradle:0.9.18'
+  }
+}
+
+apply plugin: 'base'
+apply plugin: 'secureShell'
+
+
+ext {
+
+  stateFile = new File('terraform.tfstate')
+
+  getTerraformState = {
+    stateFile.exists() ? new JsonSlurper().parse(stateFile) : [:]
+  }
+
+  getServerIp = { 
+    project.getTerraformState()?.modules?.first()?.resources?.findAll { it.key.startsWith 'aws_instance.test_server' }?.collect { it?.value?.primary?.attributes?.public_ip }?.find() ?: '127.0.0.1'
+  }
+
+}
+
+sshOptions {
+  defaultPort       = 22
+  defaultUser       = 'ubuntu'
+  defaultPassword   = ''
+  defaultKeyFile    = file('test.key')
+  reuseConnection   = true
+  trustUnknownHosts = true
+  verbose           = true
+  execOptions {
+    showCommand     = true
+    showOutput      = true
+  }
+}
+
+
+task createServer(type: Exec) {
+  commandLine 'terraform', 'apply'
+}
+
+task uploadTests {
+  doLast {
+    remoteSession {
+      host = project.getServerIp()
+      scp {
+        from { localFile 'test.bats' }
+        into { remoteDir '/tmp' }
+      }
+    }
+  }
+}
+
+uploadTests.mustRunAfter createServer
+
+task runTests {
+  doLast {
+    remoteSession {
+      host = project.getServerIp()
+      exec 'bats /tmp/test.bats'
+    }
+  }
+}
+
+runTests.mustRunAfter uploadTests
+
+task destroyServer(type: Exec) {
+  commandLine 'terraform', 'destroy', '-force'
+}
+
+destroyServer.mustRunAfter runTests
