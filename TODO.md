@@ -1,5 +1,4 @@
 
-- fix hiera 3 problems
-- fix puppet path problems 
-- fix puppet module path problems 
+- fix base box for ubuntu 16.04 for vagrant
+- fix base box for ubuntu 16.04 for aws
 
