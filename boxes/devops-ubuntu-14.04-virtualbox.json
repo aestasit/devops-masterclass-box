@@ -1,6 +1,11 @@
 {
   "provisioners": [
     {
+      "type": "file",
+      "source": "files",
+      "destination": "/tmp/files"
+    },
+    {
       "type": "shell",
       "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'",
       "override": {

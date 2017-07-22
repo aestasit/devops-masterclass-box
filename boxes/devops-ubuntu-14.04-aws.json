@@ -1,6 +1,11 @@
 {
   "provisioners": [
     {
+      "type": "file",
+      "source": "files",
+      "destination": "/tmp"
+    },
+    {
       "type": "shell",
       "execute_command": "sudo -S sh '{{.Path}}'",
       "override": {
