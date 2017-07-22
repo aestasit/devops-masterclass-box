@@ -10,3 +10,4 @@ packer_cache/
 *.tfstate
 *.backup
 .gradle
+.vagrant

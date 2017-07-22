@@ -19,21 +19,40 @@ ext {
 
   stateFile = new File('terraform.tfstate')
 
+  isVagrant = {
+    project.hasProperty('infra') && project.infra == 'vagrant'
+  }
+
   getTerraformState = {
     stateFile.exists() ? new JsonSlurper().parse(stateFile) : [:]
   }
 
   getServerIp = { 
-    project.getTerraformState()?.modules?.first()?.resources?.findAll { it.key.startsWith 'aws_instance.test_server' }?.collect { it?.value?.primary?.attributes?.public_ip }?.find() ?: '127.0.0.1'
+    if (project.isVagrant()) {
+      return '192.168.23.10'
+    } else {
+      return project.getTerraformState()?.modules?.first()?.resources?.findAll { it.key.startsWith 'aws_instance.test_server' }?.collect { it?.value?.primary?.attributes?.public_ip }?.find() ?: '127.0.0.1'
+    }    
+  }
+
+  getServerUser = { 
+    if (project.isVagrant()) {
+      return 'vagrant'
+    } else {
+      return 'ubuntu'
+    }    
   }
 
 }
 
 sshOptions {
   defaultPort       = 22
-  defaultUser       = 'ubuntu'
   defaultPassword   = ''
-  defaultKeyFile    = file('test.key')
+  if (project.isVagrant()) {
+    defaultKeyFile  = file('.vagrant/machines/default/virtualbox/private_key')    
+  } else {
+    defaultKeyFile  = file('test.key')
+  }
   reuseConnection   = true
   trustUnknownHosts = true
   verbose           = true
@@ -45,12 +64,17 @@ sshOptions {
 
 
 task createServer(type: Exec) {
-  commandLine 'terraform', 'apply'
+  if (project.isVagrant()) {
+    commandLine 'vagrant', 'up'
+  } else {
+    commandLine 'terraform', 'apply'
+  }
 }
 
 task uploadTests {
   doLast {
     remoteSession {
+      user = project.getServerUser()
       host = project.getServerIp()
       scp {
         from { localFile 'test.bats' }
@@ -65,8 +89,10 @@ uploadTests.mustRunAfter createServer
 task runTests {
   doLast {
     remoteSession {
+      user = project.getServerUser()
       host = project.getServerIp()
-      exec 'bats /tmp/test.bats'
+      exec 'bats -t /tmp/test.bats'
+      exec 'cat /tmp/puppet.output'
     }
   }
 }
@@ -74,7 +100,11 @@ task runTests {
 runTests.mustRunAfter uploadTests
 
 task destroyServer(type: Exec) {
-  commandLine 'terraform', 'destroy', '-force'
+  if (project.isVagrant()) {
+    commandLine 'vagrant', 'destroy', '--force'
+  } else {
+    commandLine 'terraform', 'destroy', '-force'
+  }
 }
 
 destroyServer.mustRunAfter runTests
