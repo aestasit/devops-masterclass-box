@@ -13,3 +13,5 @@ packer_cache/
 .vagrant
 build
 .terraform.tfstate.lock.info
+vagrant-cloud.upload.token
+secrets.json
