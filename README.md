@@ -6,7 +6,7 @@ The final images will have the following software:
 
  - Puppet 4.+ and r10k
  - Ansible 2.+
- - Chef DK 1.3.+
+ - Chef DK 2.0.+
  - Docker CE 17.+
  - Terraform 0.9.+
  - AWS Client 1.+
