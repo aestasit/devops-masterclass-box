@@ -5,13 +5,10 @@ packer_cache/
 *.box
 *.vdi
 *.log
-
-
 *.tfstate
 *.backup
 .gradle
 .vagrant
 build
 .terraform.tfstate.lock.info
-vagrant-cloud.upload.token
 secrets.json
