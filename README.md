@@ -14,20 +14,27 @@ The final images will have the following software:
  - Groovy 2.4.+
  - BATS
 
+## Build
+
+Boxes are generated with Packer 1.0.3 and VirtualBox 5.1.24.
+
+In order to save the build log, it's worth setting the following environment variables:
+
+    PACKER_LOG=1
+    PACKER_LOG_PATH=devops-ubuntu-14.04-aws.log
+
+To start the build, use the following command: 
+
+    packer build -force boxes/devops-ubuntu-14.04-aws.json
+
 ## Vagrant
 
 Vagrant/Virtualbox boxes are uploaded to Atlas:
 
 - <https://atlas.hashicorp.com/aestasit/boxes/devops-ubuntu-14.04/>
-- <https://atlas.hashicorp.com/aestasit/boxes/devops-ubuntu-16.04/> 
 
-To start Vagrant/Virtualbox machine with Ubuntu 14.04 use the following command :
+To start Vagrant/Virtualbox machine with Ubuntu 14.04 use the following command:
 
     vagrant init aestasit/devops-ubuntu-14.04
-    vagrant up --provider virtualbox
-
-To start Vagrant/Virtualbox machine with Ubuntu 16.04 use the following command :
-
-    vagrant init aestasit/devops-ubuntu-16.04
     vagrant up --provider virtualbox
 
