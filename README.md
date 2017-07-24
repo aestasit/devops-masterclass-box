@@ -12,6 +12,7 @@ The final images will have the following software:
  - AWS Client 1.+
  - OpenJDK 1.8.+
  - Groovy 2.4.+
+ - jq 1.5
  - BATS
 
 ## Build
@@ -29,9 +30,10 @@ To start the build, use the following command:
 
 ## Vagrant
 
-Vagrant/Virtualbox boxes are uploaded to Atlas:
+Vagrant/Virtualbox boxes are uploaded to Vagrant Cloud:
 
-- <https://atlas.hashicorp.com/aestasit/boxes/devops-ubuntu-14.04/>
+- <https://app.vagrantup.com/aestasit/boxes/devops-ubuntu-14.04>
+- <https://app.vagrantup.com/aestasit/boxes/devops-ubuntu-16.04>
 
 To start Vagrant/Virtualbox machine with Ubuntu 14.04 use the following command:
 
