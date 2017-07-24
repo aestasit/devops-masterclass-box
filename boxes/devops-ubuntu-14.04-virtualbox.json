@@ -1,8 +1,4 @@
 {
-  "variables": {
-    "vagrant_cloud_token": "",
-    "box_version": "1.1.{{timestamp}}"
-  },
   "provisioners": [
     {
       "type": "file",
@@ -87,12 +83,6 @@
             "output": "output/devops-ubuntu-14-04-x64-virtualbox-{{isotime \"2006-01-02\"}}.box"
           }
         }
-      },
-      {
-        "type": "vagrant-cloud",
-        "box_tag": "aestasit/devops-ubuntu-14.04",
-        "access_token": "{{user `vagrant_cloud_token`}}",
-        "version": "{{user `box_version`}}"
       }
     ]
   ]
