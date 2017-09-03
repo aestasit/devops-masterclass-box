@@ -28,6 +28,8 @@ To start the build, use the following command:
 
     packer build -force boxes/devops-ubuntu-14.04-aws.json
 
+**NOTE:** Packer build files for AWS may need to be updated with the latest AMI ID for your region. Find the latest AMI ID at <https://cloud-images.ubuntu.com/locator/ec2/>.
+
 ## Vagrant
 
 Vagrant/Virtualbox boxes are uploaded to Vagrant Cloud:

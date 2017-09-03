@@ -18,6 +18,7 @@
             "scripts/ansible.sh",
             "scripts/chef.sh",
             "scripts/docker.sh",
+            "scripts/kubernetes.sh",
             "scripts/aws-cli.sh",
             "scripts/bats.sh",
             "scripts/terraform.sh",

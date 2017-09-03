@@ -7,6 +7,11 @@ apt-get -y -qq install -o=Dpkg::Use-Pty=0 --reinstall debconf
 dpkg-reconfigure debconf
 
 echo "*** Updating system ***"
+DEBIAN_FRONTEND=noninteractive
+UCF_FORCE_CONFFNEW=true
+export UCF_FORCE_CONFFNEW DEBIAN_FRONTEND
+sed -i 's/console=hvc0/console=ttyS0/' /boot/grub/menu.lst
+sed -i 's/LABEL=UEFI.*//' /etc/fstab
 apt-get -y -qq update -o=Dpkg::Use-Pty=0
 apt-get -y -qq upgrade -o=Dpkg::Use-Pty=0
 apt-get -y -qq install -o=Dpkg::Use-Pty=0 linux-headers-$(uname -r)
