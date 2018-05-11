@@ -1,4 +1,14 @@
 {
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "eu-west-1",
+      "source_ami": "ami-895e69f0",
+      "instance_type": "m3.medium",
+      "ssh_username": "ubuntu",
+      "ami_name": "devops-ubuntu-16-04-x64 {{ isotime \"2006-01-02\" }}"
+    }
+  ],
   "provisioners": [
     {
       "type": "file",
@@ -13,6 +23,7 @@
           "scripts": [
             "scripts/cloud-init.sh",
             "scripts/base.sh",
+            "scripts/git.sh",
             "scripts/puppet.sh",
             "scripts/ansible.sh",
             "scripts/chef.sh",
@@ -21,22 +32,16 @@
             "scripts/aws-cli.sh",
             "scripts/bats.sh",
             "scripts/terraform.sh",
+            "scripts/consul.sh",
             "scripts/groovy.sh",
+            "scripts/nodejs.sh",
+            "scripts/ruby.sh",
+            "scripts/serverspec.sh",
             "scripts/cleanup.sh",
             "scripts/zerodisk.sh"
           ]
         }
       }
-    }
-  ],
-  "builders": [
-    {
-      "type": "amazon-ebs",
-      "region": "eu-west-1",
-      "source_ami": "ami-674cbc1e",
-      "instance_type": "m3.medium",
-      "ssh_username": "ubuntu",
-      "ami_name": "devops-ubuntu-16-04-x64 {{isotime \"2006-01-02\"}}"
     }
   ]
 }

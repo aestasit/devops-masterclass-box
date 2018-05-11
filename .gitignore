@@ -1,14 +1,15 @@
-# Cache objects
-packer_cache/
-
 # Build artifacts
 *.box
 *.vdi
 *.log
 *.tfstate
 *.backup
+secrets.json
+build
 .gradle
 .vagrant
-build
+.terraform
 .terraform.tfstate.lock.info
-secrets.json
+.output
+.cache
+.logs

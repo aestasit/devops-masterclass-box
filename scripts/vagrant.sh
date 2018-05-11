@@ -1,5 +1,8 @@
 #!/bin/bash -e -x
 
+DEBIAN_FRONTEND=noninteractive
+export DEBIAN_FRONTEND
+
 date > /etc/vagrant_box_build_time
 
 mkdir /home/vagrant/.ssh

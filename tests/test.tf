@@ -77,7 +77,7 @@ resource "aws_key_pair" "test_key" {
 }
 
 resource "aws_instance" "test_server" {
-  ami = "${data.aws_ami.devops_ubuntu_trusty.id}"
+  ami = "${data.aws_ami.devops_ubuntu_xenial.id}"
   instance_type = "t2.medium"
   tags {
     Name = "test_server"

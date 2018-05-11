@@ -1,36 +1,53 @@
 #!/bin/bash -e -x
 
-echo "*** Preparing ***"
+DEBIAN_FRONTEND=noninteractive
+export DEBIAN_FRONTEND
+
+echo "*** Cleaning ***"
 rm /var/cache/debconf/*.dat
 apt-get -y -qq clean
+
+echo "*** Preparing ***"
 apt-get -y -qq install -o=Dpkg::Use-Pty=0 --reinstall debconf
 dpkg-reconfigure debconf
 
 echo "*** Updating system ***"
-DEBIAN_FRONTEND=noninteractive
 UCF_FORCE_CONFFNEW=true
-export UCF_FORCE_CONFFNEW DEBIAN_FRONTEND
-sed -i 's/console=hvc0/console=ttyS0/' /boot/grub/menu.lst
+export UCF_FORCE_CONFFNEW
+# sed -i 's/console=hvc0/console=ttyS0/' /boot/grub/menu.lst
 sed -i 's/LABEL=UEFI.*//' /etc/fstab
 apt-get -y -qq update -o=Dpkg::Use-Pty=0
 apt-get -y -qq upgrade -o=Dpkg::Use-Pty=0
 apt-get -y -qq install -o=Dpkg::Use-Pty=0 linux-headers-$(uname -r)
 
+DEBIAN_FRONTEND=noninteractive
+export DEBIAN_FRONTEND
+
 echo "*** Configuring permissions ***"
 sed -i -e '/Defaults\s\+env_reset/a Defaults\texempt_group=sudo' /etc/sudoers
 sed -i -e 's/%sudo  ALL=(ALL:ALL) ALL/%sudo  ALL=NOPASSWD:ALL/g' /etc/sudoers
+
+echo "*** Configuring networks ***"
+# Adding a 2 sec delay to the interface up, to make the dhclient happy
+echo "pre-up sleep 2" >> /etc/network/interfaces
+# Disable DNS reverse lookup
 echo "UseDNS no" >> /etc/ssh/sshd_config
 
 echo "*** Installing tools ***"
-apt-get -qq -y install -o=Dpkg::Use-Pty=0 zip wget curl mc links tree tofrodos git
-apt-get -qq -y install -o=Dpkg::Use-Pty=0 apt-transport-https ca-certificates software-properties-common
+sudo -H apt-get -qq -y install -o=Dpkg::Use-Pty=0 zip wget curl mc links tree tofrodos
+sudo -H apt-get -qq -y install -o=Dpkg::Use-Pty=0 apt-transport-https ca-certificates software-properties-common
 
-apt-get -y -qq install -o=Dpkg::Use-Pty=0 python-pip
-apt-get -y -qq install -o=Dpkg::Use-Pty=0 libyaml-dev python-dev
-apt-get -y -qq install -o=Dpkg::Use-Pty=0 python-yaml
+sudo -H apt-get -y -qq install -o=Dpkg::Use-Pty=0 python-pip
+sudo -H apt-get -y -qq install -o=Dpkg::Use-Pty=0 libyaml-dev python-dev
+sudo -H apt-get -y -qq install -o=Dpkg::Use-Pty=0 python-yaml
 
-apt-get -y -qq install -o=Dpkg::Use-Pty=0 httpie
-apt-get -y -qq install -o=Dpkg::Use-Pty=0 fabric
+sudo -H pip install -U pip
+hash -r pip
+
+sudo -H apt-get -y -qq install -o=Dpkg::Use-Pty=0 httpie
+sudo -H apt-get -y -qq install -o=Dpkg::Use-Pty=0 fabric
+
+sudo -H pip install -U Crypto
 
 wget --quiet --no-check-certificate https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 -O /usr/bin/jq
 chmod a+x /usr/bin/jq
