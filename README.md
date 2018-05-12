@@ -38,7 +38,7 @@ To start the build, use the following command:
 
 **NOTE:** Packer build files for AWS may need to be updated with the latest AMI ID for your region. Find the latest AMI ID at <https://cloud-images.ubuntu.com/locator/ec2/>.
 
-**NOTE:** Before you can run Hyper-V build you have to create an external switch connected to card that is connected to the network with DHCP capability and name that router "external-wifi".
+**NOTE:** Before you can run Hyper-V build you have to create an external switch connected to the network card that is connected to the Internet with DHCP capability and name that router "external-wifi".
 
 ## Vagrant
 

@@ -29,7 +29,8 @@ ext {
 
   getServerIp = { 
     if (project.isVagrant()) {
-      return '192.168.23.10'
+      // return '192.168.23.10'
+      return '192.168.1.35'
     } else {
       return project.getTerraformState()?.modules?.first()?.resources?.findAll { it.key.startsWith 'aws_instance.test_server' }?.collect { it?.value?.primary?.attributes?.public_ip }?.find() ?: '127.0.0.1'
     }    
@@ -49,7 +50,8 @@ sshOptions {
   defaultPort       = 22
   defaultPassword   = ''
   if (project.isVagrant()) {
-    defaultKeyFile  = file('.vagrant/machines/default/virtualbox/private_key')    
+    // defaultKeyFile  = file('.vagrant/machines/default/virtual/private_key')    
+    defaultKeyFile  = file('.vagrant/machines/default/hyperv/private_key')    
   } else {
     defaultKeyFile  = file('test.key')
   }

@@ -33,8 +33,12 @@ echo "pre-up sleep 2" >> /etc/network/interfaces
 # Disable DNS reverse lookup
 echo "UseDNS no" >> /etc/ssh/sshd_config
 
+DEBIAN_FRONTEND=noninteractive
+export DEBIAN_FRONTEND
+
 echo "*** Installing tools ***"
-sudo -H apt-get -qq -y install -o=Dpkg::Use-Pty=0 zip wget curl mc links tree tofrodos
+
+sudo -H apt-get -qq -y install -o=Dpkg::Use-Pty=0 zip wget curl mc links tree tofrodos cifs-utils smbclient
 sudo -H apt-get -qq -y install -o=Dpkg::Use-Pty=0 apt-transport-https ca-certificates software-properties-common
 
 sudo -H apt-get -y -qq install -o=Dpkg::Use-Pty=0 python-pip
