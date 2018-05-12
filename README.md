@@ -25,7 +25,7 @@ The final images will have the following software:
 
 ## Build
 
-Boxes are generated with Packer 1.2.3 and AWS, VirtualBox 5.1.24, Hyper-V, VMWare Workstation.
+Boxes are generated with Packer 1.2.3 and AWS, VirtualBox 5.2, Hyper-V, VMWare Workstation Pro.
 
 In order to save the build log, it's worth setting the following environment variables:
 

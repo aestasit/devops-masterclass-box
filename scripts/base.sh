@@ -18,6 +18,10 @@ export UCF_FORCE_CONFFNEW
 sed -i 's/LABEL=UEFI.*//' /etc/fstab
 apt-get -y -qq update -o=Dpkg::Use-Pty=0
 apt-get -y -qq upgrade -o=Dpkg::Use-Pty=0
+
+DEBIAN_FRONTEND=noninteractive
+export DEBIAN_FRONTEND
+
 apt-get -y -qq install -o=Dpkg::Use-Pty=0 linux-headers-$(uname -r)
 
 DEBIAN_FRONTEND=noninteractive
@@ -28,8 +32,6 @@ sed -i -e '/Defaults\s\+env_reset/a Defaults\texempt_group=sudo' /etc/sudoers
 sed -i -e 's/%sudo  ALL=(ALL:ALL) ALL/%sudo  ALL=NOPASSWD:ALL/g' /etc/sudoers
 
 echo "*** Configuring networks ***"
-# Adding a 2 sec delay to the interface up, to make the dhclient happy
-echo "pre-up sleep 2" >> /etc/network/interfaces
 # Disable DNS reverse lookup
 echo "UseDNS no" >> /etc/ssh/sshd_config
 

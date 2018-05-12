@@ -11,6 +11,7 @@
   "builders": [
     {
       "type": "hyperv-iso",
+      "vm_name": "devops-ubuntu-1604",
       "boot_command": [
         "<esc><wait10><esc><esc><enter><wait>",
         "linux /install/vmlinuz ",
