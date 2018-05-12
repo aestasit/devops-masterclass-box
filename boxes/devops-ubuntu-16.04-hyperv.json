@@ -13,9 +13,9 @@
       "type": "hyperv-iso",
       "vm_name": "devops-ubuntu-1604",
       "boot_command": [
-        "<esc><wait10><esc><esc><enter><wait>",
+        "<esc><wait10><esc><esc><enter><wait10><wait10><wait10>",
         "linux /install/vmlinuz ",
-        "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/ubuntu_16.04_preseed.cfg ",
+        "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/ubuntu_16.04_preseed_hyperv.cfg",
         "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
         "hostname=devops-ubuntu-1604 ",
         "fb=false debconf/frontend=noninteractive ",

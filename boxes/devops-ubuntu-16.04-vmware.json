@@ -10,7 +10,7 @@
   },
   "builders": [
     {
-      "type": "virtualbox-iso",
+      "type": "vmware-iso",
       "boot_command": [
         "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
         "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
@@ -40,21 +40,23 @@
       "headless": true,
       "boot_wait": "20s",
       "disk_size": "{{ user `disk_size` }}",
-      "guest_os_type": "Ubuntu_64",
+      "vmdk_name": "disk",
+      "guest_os_type": "ubuntu-64",
       "http_directory": "http",
       "output_directory": "./.output/{{ build_type }}",
       "iso_checksum": "{{ user `iso_checksum` }}",
       "iso_checksum_type": "{{ user `iso_checksum_type` }}",
       "iso_url": "{{ user `iso_url` }}",
+      "vmx_data": {
+        "memsize": "{{ user `ram_size` }}",
+        "numvcpus": "{{ user `cpu` }}"
+      },
+      "vmx_remove_ethernet_interfaces": true,
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
-      "shutdown_command": "echo 'shutdown -P now' > /tmp/shutdown.sh; echo 'vagrant' | sudo -S sh '/tmp/shutdown.sh'",
-      "vboxmanage": [
-        [ "modifyvm", "{{ .Name }}", "--memory", "{{ user `ram_size` }}" ],
-        [ "modifyvm", "{{ .Name }}", "--cpus", "{{ user `cpu` }}" ]
-      ]
+      "shutdown_command": "echo 'shutdown -P now' > /tmp/shutdown.sh; echo 'vagrant' | sudo -S sh '/tmp/shutdown.sh'"
     }
   ],
   "provisioners": [
@@ -67,11 +69,10 @@
       "type": "shell",
       "execute_command": "echo 'vagrant' | sudo -S sh '{{ .Path }}'",
       "override": {
-        "virtualbox-iso": {
+        "vmware-iso": {
           "scripts": [
             "scripts/base.sh",
             "scripts/vagrant.sh",
-            "scripts/virtualbox.sh",
             "scripts/git.sh",
             "scripts/puppet.sh",
             "scripts/ansible.sh",
