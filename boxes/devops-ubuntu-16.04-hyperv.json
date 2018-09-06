@@ -57,25 +57,25 @@
       "override": {
         "hyperv-iso": {
           "scripts": [
-            "scripts/base.sh",
-            "scripts/vagrant.sh",
-            "scripts/hyperv.sh",
-            "scripts/git.sh",
-            "scripts/puppet.sh",
-            "scripts/ansible.sh",
-            "scripts/chef.sh",
-            "scripts/docker.sh",
-            "scripts/kubernetes.sh",
-            "scripts/aws-cli.sh",
-            "scripts/bats.sh",
-            "scripts/terraform.sh",
-            "scripts/consul.sh",
-            "scripts/groovy.sh",
-            "scripts/nodejs.sh",
-            "scripts/ruby.sh",
-            "scripts/serverspec.sh",
-            "scripts/cleanup.sh",
-            "scripts/zerodisk.sh"
+            "scripts/ubuntu/base.sh",
+            "scripts/ubuntu/vagrant.sh",
+            "scripts/ubuntu/hyperv.sh",
+            "scripts/ubuntu/git.sh",
+            "scripts/ubuntu/puppet.sh",
+            "scripts/ubuntu/ansible.sh",
+            "scripts/ubuntu/chef.sh",
+            "scripts/ubuntu/docker.sh",
+            "scripts/ubuntu/kubernetes.sh",
+            "scripts/ubuntu/aws-cli.sh",
+            "scripts/ubuntu/bats.sh",
+            "scripts/ubuntu/terraform.sh",
+            "scripts/ubuntu/consul.sh",
+            "scripts/ubuntu/groovy.sh",
+            "scripts/ubuntu/nodejs.sh",
+            "scripts/ubuntu/ruby.sh",
+            "scripts/ubuntu/serverspec.sh",
+            "scripts/ubuntu/cleanup.sh",
+            "scripts/ubuntu/zerodisk.sh"
           ]
         }
       }

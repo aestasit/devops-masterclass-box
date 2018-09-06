@@ -13,3 +13,4 @@ build
 .output
 .cache
 .logs
+*.pem

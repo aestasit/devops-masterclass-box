@@ -1,0 +1,38 @@
+{
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "eu-west-1",
+      "source_ami": "ami-0bdb1d6c15a40392c",
+      "instance_type": "m3.medium",
+      "ssh_username": "ec2-user",
+      "ami_name": "devops-ubuntu-16-04-x64 {{ isotime \"2006-01-02\" }}"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "files",
+      "destination": "/tmp/files"
+    },
+    {
+      "type": "shell",
+      "execute_command": "sudo -S sh '{{.Path}}'",
+      "expect_disconnect": true,
+      "override": {
+        "amazon-ebs": {
+          "scripts": [
+            "scripts/amazon/cloud-init.sh",
+            "scripts/amazon/base.sh",
+            "scripts/amazon/git.sh",
+            "scripts/amazon/puppet.sh",
+            "scripts/amazon/docker.sh",
+            "scripts/amazon/aws-cli.sh",
+            "scripts/amazon/cleanup.sh",
+            "scripts/amazon/zerodisk.sh"
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -4,9 +4,9 @@ DEBIAN_FRONTEND=noninteractive
 export DEBIAN_FRONTEND
 
 echo "*** Installing Puppet ***"
-curl -O "https://apt.puppetlabs.com/puppetlabs-release-pc1-$(lsb_release -c -s).deb"
-dpkg -i puppetlabs-release-*.deb
-rm -rf puppetlabs-release-*
+curl -O "https://apt.puppetlabs.com/puppet5-release-$(lsb_release -c -s).deb"
+dpkg -i puppet5-release-*.deb
+rm -rf puppet5-release-*
 apt-get -y -qq update -o=Dpkg::Use-Pty=0
 apt-get -y -qq install -o=Dpkg::Use-Pty=0 puppet-agent
 cp /tmp/files/hiera.yaml /etc/puppetlabs/puppet

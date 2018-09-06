@@ -10,9 +10,6 @@ export LC_ALL=en_US.UTF-8
 locale-gen en_US.UTF-8
 dpkg-reconfigure locales
 
-echo "*** Installing AUFS ***"
-apt-get -y -qq install -o=Dpkg::Use-Pty=0 linux-image-extra-$(uname -r) linux-image-extra-virtual
-
 echo "*** Installing Docker ***"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
