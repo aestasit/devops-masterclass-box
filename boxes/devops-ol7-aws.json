@@ -32,6 +32,7 @@
             "scripts/centos/puppet.sh",
             "scripts/centos/docker_ol.sh",
             "scripts/centos/aws-cli.sh",
+            "scripts/centos/oracle_cloud_init_user.sh",            
             "scripts/centos/cleanup.sh",
             "scripts/centos/zerodisk.sh"
           ]
