@@ -24,7 +24,9 @@
         "amazon-ebs": {
           "scripts": [
             "scripts/centos/cloud-init.sh",
-            "scripts/centos/base.sh",
+            "scripts/centos/base_permissions.sh",
+            "scripts/centos/base_epel.sh",
+            "scripts/centos/base_tools.sh",            
             "scripts/centos/git.sh",
             "scripts/centos/puppet.sh",
             "scripts/centos/docker.sh",

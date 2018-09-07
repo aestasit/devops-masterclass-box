@@ -6,7 +6,7 @@
       "source_ami": "ami-3548444c",
       "instance_type": "m3.medium",
       "ssh_username": "centos",
-      "ami_name": "devops-centos7-x64 {{ isotime \"2006-01-02\" }}"
+      "ami_name": "devops-ol7-x64 {{ isotime \"2006-01-02\" }}"
     }
   ],
   "provisioners": [
@@ -24,12 +24,13 @@
         "amazon-ebs": {
           "scripts": [
             "scripts/centos/cloud-init.sh",
+            "scripts/centos/centos2ol.sh",
+            "scripts/centos/base_ol.sh",            
             "scripts/centos/base_permissions.sh",
-            "scripts/centos/base_epel.sh",
             "scripts/centos/base_tools.sh",            
             "scripts/centos/git.sh",
             "scripts/centos/puppet.sh",
-            "scripts/centos/docker.sh",
+            "scripts/centos/docker_ol.sh",
             "scripts/centos/aws-cli.sh",
             "scripts/centos/cleanup.sh",
             "scripts/centos/zerodisk.sh"

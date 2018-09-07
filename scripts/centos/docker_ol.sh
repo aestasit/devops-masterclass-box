@@ -1,7 +1,7 @@
 #!/bin/bash -e -x
 
 echo "*** Installing Docker ***"
-sudo yum -y install docker 
+sudo yum -y install docker-engine
 sudo usermod -aG docker "$(logname)"
 sudo cp /tmp/files/daemon.json /etc/docker
 sudo systemctl start docker
