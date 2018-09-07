@@ -3,7 +3,7 @@
 echo "*** Installing Docker ***"
 sudo yum -y install docker
 sudo usermod -aG docker "$(logname)"
-sudo cp /tmp/files/daemon.json /etc/docker
+# sudo cp /tmp/files/daemon.json /etc/docker
 sudo service docker start
 
 echo "*** Installing Docker Compose ***"

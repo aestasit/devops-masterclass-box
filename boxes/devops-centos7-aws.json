@@ -3,10 +3,10 @@
     {
       "type": "amazon-ebs",
       "region": "eu-west-1",
-      "source_ami": "ami-0bdb1d6c15a40392c",
+      "source_ami": "ami-3548444c",
       "instance_type": "m3.medium",
-      "ssh_username": "ec2-user",
-      "ami_name": "devops-amzn2-x64 {{ isotime \"2006-01-02\" }}"
+      "ssh_username": "centos",
+      "ami_name": "devops-centos7-x64 {{ isotime \"2006-01-02\" }}"
     }
   ],
   "provisioners": [
