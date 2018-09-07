@@ -3,8 +3,9 @@
 echo "*** Installing Docker ***"
 sudo yum -y install docker 
 sudo usermod -aG docker "$(logname)"
-sudo cp /tmp/files/daemon.json /etc/docker
+# sudo cp /tmp/files/daemon.json /etc/docker
 sudo systemctl start docker
+sudo systemctl status docker.service
 sudo systemctl enable docker
 
 echo "*** Installing Docker Compose ***"

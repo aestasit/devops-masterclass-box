@@ -1,7 +1,7 @@
 #!/bin/bash -e -x
 
 echo "*** Installing tools ***"
-sudo yum -y install zip wget curl mc links tree cifs-utils 
+sudo yum -y install zip wget curl mc links tree cifs-utils nano vim-enhanced
 sudo yum -y install python-pip
 sudo -H pip install -U pip
 sudo yum -y install httpie python2-httpie
