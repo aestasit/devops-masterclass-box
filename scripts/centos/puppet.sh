@@ -4,6 +4,7 @@ echo "*** Installing Puppet ***"
 sudo yum -y install https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
 sudo yum -y install puppet
 sudo yum -y install puppet-bolt
+sudo yum -y install pdk
 cp /tmp/files/hiera.yaml /etc/puppetlabs/puppet
 cp /tmp/files/puppet.conf /etc/puppetlabs/puppet
 
