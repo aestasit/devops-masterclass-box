@@ -4,9 +4,9 @@
     "ram_size": "2048",
     "disk_size": "40000",
     "switch_name": "external-wifi",
-    "iso_checksum": "6a7f31eb125a0b2908cf2333d7777c82",
+    "iso_checksum": "24636fd103a2a43c95659f1c3c63718e",
     "iso_checksum_type": "md5",
-    "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.4-server-amd64.iso"
+    "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.5-server-amd64.iso"
   },
   "builders": [
     {
