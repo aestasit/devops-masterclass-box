@@ -45,15 +45,5 @@ sudo -H apt-get -qq -y install -o=Dpkg::Use-Pty=0 apt-transport-https ca-certifi
 
 sudo -H apt-get -y -qq install -o=Dpkg::Use-Pty=0 httpie
 
-sudo -H apt-get -y -qq install -o=Dpkg::Use-Pty=0 python-pip
-sudo -H apt-get -y -qq install -o=Dpkg::Use-Pty=0 libyaml-dev python-dev
-sudo -H apt-get -y -qq install -o=Dpkg::Use-Pty=0 python-yaml
-
-sudo -H pip install -U pip
-hash -r pip
-
-sudo -H pip install -U Crypto
-sudo -H pip install -U fabric
-
 wget --quiet --no-check-certificate https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 -O /usr/bin/jq
 chmod a+x /usr/bin/jq
