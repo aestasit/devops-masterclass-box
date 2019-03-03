@@ -1,9 +1,12 @@
 #!/bin/bash -e -x
 
 echo "*** Installing GCP CLI ***"
+export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
+echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+apt-get -y -qq update -o=Dpkg::Use-Pty=0
+apt-get -y -qq install -o=Dpkg::Use-Pty=0 google-cloud-sdk
+gcloud --quiet components update
 
-curl https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-236.0.0-linux-x86_64.tar.gz --output google-cloud-sdk.tar.gz
-tar -xvzf google-cloud-sdk.tar.gz
-./google-cloud-sdk/install.sh
-./google-cloud-sdk/bin/gcloud --quiet components update
-rm -rf google-cloud-sdk.tar.gz
+echo "*** Checking GCP CLI ***"
+gcloud version

@@ -75,6 +75,9 @@
             "scripts/ubuntu/git.sh",
             "scripts/ubuntu/consul.sh",
             "scripts/ubuntu/fabric.sh",
+            "scripts/ubuntu/languages/groovy.sh",
+            "scripts/ubuntu/languages/nodejs.sh",
+            "scripts/ubuntu/languages/ruby.sh",
             "scripts/ubuntu/provisioning/puppet.sh",
             "scripts/ubuntu/provisioning/ansible.sh",
             "scripts/ubuntu/provisioning/chef.sh",
@@ -86,9 +89,7 @@
             "scripts/ubuntu/testing/bats.sh",
             "scripts/ubuntu/testing/serverspec.sh",
             "scripts/ubuntu/testing/goss.sh",
-            "scripts/ubuntu/languages/groovy.sh",
-            "scripts/ubuntu/languages/nodejs.sh",
-            "scripts/ubuntu/languages/ruby.sh",
+            "scripts/ubuntu/disable-auto-updates.sh",
             "scripts/ubuntu/cleanup.sh",
             "scripts/ubuntu/zerodisk.sh"
           ]

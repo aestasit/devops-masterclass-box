@@ -4,9 +4,9 @@ DEBIAN_FRONTEND=noninteractive
 export DEBIAN_FRONTEND
 
 echo "*** Installing BATS ***"
-git clone https://github.com/sstephenson/bats.git
-cd bats
-./install.sh /usr
+git clone https://github.com/bats-core/bats-core.git
+cd bats-core
+./install.sh /usr/local
 cd ..
 rm -rf bats
 
