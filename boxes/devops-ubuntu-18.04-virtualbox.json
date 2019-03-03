@@ -1,0 +1,108 @@
+{
+  "variables": {
+    "cpu": "2",
+    "ram_size": "2048",
+    "disk_size": "40000",
+    "switch_name": "external-wifi",
+    "iso_checksum": "34416ff83179728d54583bf3f18d42d2",
+    "iso_checksum_type": "md5",
+    "iso_url": "http://cdimage.ubuntu.com/releases/18.04.2/release/ubuntu-18.04.2-server-amd64.iso"
+  },
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "boot_command": [
+        "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "/install/vmlinuz<wait>",
+        " auto<wait>",
+        " console-setup/ask_detect=false<wait>",
+        " console-setup/layoutcode=us<wait>",
+        " console-setup/modelcode=pc105<wait>",
+        " debconf/frontend=noninteractive<wait>",
+        " debian-installer=en_US<wait>",
+        " fb=false<wait>",
+        " initrd=/install/initrd.gz<wait>",
+        " kbd-chooser/method=us<wait>",
+        " keyboard-configuration/layout=USA<wait>",
+        " keyboard-configuration/variant=USA<wait>",
+        " locale=en_US<wait>",
+        " netcfg/get_domain=vagrantup.com<wait>",
+        " netcfg/get_hostname=devops-ubuntu-1804<wait>",
+        " grub-installer/bootdev=/dev/sda<wait>",
+        " noapic<wait>",
+        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ubuntu_16.04_preseed.cfg",
+        " -- <wait>",
+        "<enter><wait>"
+      ],
+      "headless": true,
+      "boot_wait": "20s",
+      "disk_size": "{{ user `disk_size` }}",
+      "guest_os_type": "Ubuntu_64",
+      "http_directory": "http",
+      "output_directory": "./.output/{{ build_type }}",
+      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_checksum_type": "{{ user `iso_checksum_type` }}",
+      "iso_url": "{{ user `iso_url` }}",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "echo 'shutdown -P now' > /tmp/shutdown.sh; echo 'vagrant' | sudo -S sh '/tmp/shutdown.sh'",
+      "vboxmanage": [
+        [ "modifyvm", "{{ .Name }}", "--memory", "{{ user `ram_size` }}" ],
+        [ "modifyvm", "{{ .Name }}", "--cpus", "{{ user `cpu` }}" ]
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "files",
+      "destination": "/tmp/files"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | sudo -S sh '{{ .Path }}'",
+      "override": {
+        "virtualbox-iso": {
+          "scripts": [
+            "scripts/ubuntu/base.sh",
+            "scripts/ubuntu/vagrant.sh",
+            "scripts/ubuntu/virtualbox.sh",
+            "scripts/ubuntu/git.sh",
+            "scripts/ubuntu/consul.sh",
+            "scripts/ubuntu/fabric.sh",
+            "scripts/ubuntu/languages/groovy.sh",
+            "scripts/ubuntu/languages/nodejs.sh",
+            "scripts/ubuntu/languages/ruby.sh",
+            "scripts/ubuntu/provisioning/puppet.sh",
+            "scripts/ubuntu/provisioning/ansible.sh",
+            "scripts/ubuntu/provisioning/chef.sh",
+            "scripts/ubuntu/containers/docker.sh",
+            "scripts/ubuntu/containers/kubernetes.sh",
+            "scripts/ubuntu/clouds/aws-cli.sh",
+            "scripts/ubuntu/clouds/gcp-cli.sh",
+            "scripts/ubuntu/clouds/terraform.sh",
+            "scripts/ubuntu/testing/bats.sh",
+            "scripts/ubuntu/testing/serverspec.sh",
+            "scripts/ubuntu/testing/goss.sh",
+            "scripts/ubuntu/disable-auto-updates.sh",
+            "scripts/ubuntu/cleanup.sh",
+            "scripts/ubuntu/zerodisk.sh"
+          ]
+        }
+      }
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+         "output": ".output/devops-ubuntu-18-04-x64-{{ .Provider }}-{{ isotime \"2006-01-02\" }}.box"
+      }
+    ]
+  ]
+}
