@@ -40,7 +40,7 @@ export DEBIAN_FRONTEND
 
 echo "*** Installing tools ***"
 
-sudo -H apt-get -qq -y install -o=Dpkg::Use-Pty=0 zip wget curl mc links tree tofrodos cifs-utils smbclient
+sudo -H apt-get -qq -y install -o=Dpkg::Use-Pty=0 zip unzip wget curl mc links tree tofrodos cifs-utils smbclient
 sudo -H apt-get -qq -y install -o=Dpkg::Use-Pty=0 apt-transport-https ca-certificates software-properties-common
 
 sudo -H apt-get -y -qq install -o=Dpkg::Use-Pty=0 httpie

@@ -5,23 +5,24 @@ Packer build for boxes used during DevOps Masterclass course for playing with pr
 
 The final images will have the following software:
 
- - Git 2.+
- - Docker CE 18.+
- - Kubectl 1.10.+ and Minicube 0.26.+
- - Puppet 4.+ and r10k
- - Ansible 2.+
- - Chef DK 2.0.+
- - Terraform 0.11.+
- - Consul 1.+
- - AWS Client 1.+
- - OpenJDK 1.8.+
- - Groovy 2.4.+
- - Node JS 9.+ and Yarn 1.6.+
- - Ruby 2.3.+
- - jq 1.5
- - BATS
- - Serverpec
- - and several others
+- Git 2.+
+- Docker CE 18.+ and Docker Compose
+- Kubectl 1.10.+, Helm 2.+ and Minicube 0.26.+
+- Puppet 6.+, Puppet Bolt 1.+ and r10k
+- Ansible 2.+
+- Chef DK 3.+
+- Terraform 0.11.+
+- Consul 1.+
+- AWS Client 1.+
+- GCP Client 229.+
+- OpenJDK 1.8.+
+- Groovy 2.4.+
+- Node JS 9.+ and Yarn 1.6.+
+- Ruby 2.3.+
+- jq 1.5
+- BATS
+- Serverpec
+- and several others
 
 ## Build
 
@@ -32,7 +33,7 @@ In order to save the build log, it's worth setting the following environment var
     PACKER_LOG=1
     PACKER_LOG_PATH=devops-ubuntu-16.04-aws.log
 
-To start the build, use the following command: 
+To start the build, use the following command:
 
     packer build -force boxes/devops-ubuntu-16.04-aws.json
 
