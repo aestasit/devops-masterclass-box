@@ -1,6 +1,6 @@
 @echo off
 
-set VERSION=2018-12-18
+set VERSION=2019-03-04
 
 rem call vagrant box remove --provider vmware_desktop --force aestasit/devops-ubuntu-16.04 
 rem call vagrant box add --provider vmware_desktop --force aestasit/devops-ubuntu-16.04 file://.output/devops-ubuntu-16-04-x64-vmware-%VERSION%.box 
