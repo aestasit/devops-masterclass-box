@@ -10,7 +10,7 @@ chmod +x ./kubectl
 mv ./kubectl /usr/local/bin/kubectl
 
 echo "*** Checking kubectl installation ***"
-kubectl version
+kubectl version --client
 
 echo "*** Installing minikube ***"
 curl -Lo minikube https://github.com/kubernetes/minikube/releases/download/v1.1.0/minikube-linux-amd64
