@@ -7,26 +7,26 @@ The final images will have the following software:
 
 - Git 2.+
 - Docker CE 18.+ and Docker Compose
-- Kubectl 1.10.+, Helm 2.+ and Minicube 0.26.+
+- Kubectl 1.+, Helm 2.+ and Minicube 0.26.+
 - Puppet 6.+, Puppet Bolt 1.+ and r10k
 - Ansible 2.+
 - Chef DK 3.+
-- Terraform 0.11.+
+- Terraform 0.12.+
 - Consul 1.+
 - AWS Client 1.+
 - GCP Client 229.+
 - OpenJDK 1.8.+
 - Groovy 2.4.+
-- Node JS 9.+ and Yarn 1.6.+
-- Ruby 2.3.+
-- jq 1.5
+- Node JS 10.+ and Yarn 1.6.+
+- Ruby 2.+
+- jq 1.6
 - BATS
 - Serverpec
 - and several others
 
 ## Build
 
-Boxes are generated with Packer 1.2.3 and AWS, VirtualBox 5.2, Hyper-V, VMWare Workstation Pro.
+Boxes are generated with Packer 1.4.0 and AWS, VirtualBox 5.2, Hyper-V, VMWare Workstation Pro.
 
 In order to save the build log, it's worth setting the following environment variables:
 
