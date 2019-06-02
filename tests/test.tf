@@ -6,19 +6,19 @@ provider "aws" {
 data "aws_ami" "devops_ubuntu_trusty" {
   most_recent = true
   filter {
-    name = "name"                
-    values = [ "devops-ubuntu-14-04-x64*" ]
+    name = "name"
+    values = [ "devops-ubuntu-16-04-x64*" ]
   }
-  owners = [ "self" ] 
+  owners = [ "self" ]
 }
 
 data "aws_ami" "devops_ubuntu_xenial" {
   most_recent = true
   filter {
-    name = "name"                
+    name = "name"
     values = [ "devops-ubuntu-16-04-x64*" ]
   }
-  owners = [ "self" ] 
+  owners = [ "self" ]
 }
 
 resource "aws_vpc" "test_vpc" {
@@ -72,7 +72,7 @@ resource "aws_main_route_table_association" "test_routing_a" {
 }
 
 resource "aws_key_pair" "test_key" {
-  key_name = "test_key" 
+  key_name = "test_key"
   public_key = "${file("test.pub")}"
 }
 

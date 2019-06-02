@@ -6,11 +6,11 @@ setup() {
 
 @test "verify jq version" {
   result="$(jq --version)"
-  [ "$result" = 'jq-1.5' ]
+  [ "$result" = 'jq-1.6' ]
 }
 
 @test "verify puppet" {
-  [ ! -f /tmp/test.file ]  
+  [ ! -f /tmp/test.file ]
   run /opt/puppetlabs/bin/puppet apply -e 'file { "/tmp/test.file": content => "abc" }'
   echo "$output" > /tmp/puppet.output
   [ "$status" -eq 0 ]
@@ -20,17 +20,17 @@ setup() {
 @test "verify puppet with modules" {
   run sudo /opt/puppetlabs/bin/puppet module install puppetlabs-apache --version 1.11.0
   echo "$output" > /tmp/puppet-module.output
-  [ "$status" -eq 0 ]  
+  [ "$status" -eq 0 ]
   run sudo /opt/puppetlabs/bin/puppet apply -e 'include apache'
   echo "=======================" >> /tmp/puppet-module.output
   echo "$output" >> /tmp/puppet-module.output
   [ "$status" -eq 0 ]
   result="$(netstat -an | grep LISTEN | grep :80 | wc -l)"
-  [ "$result" -eq 1 ] 
+  [ "$result" -eq 1 ]
 }
 
 @test "verify r10k" {
-  run /opt/puppetlabs/bin/r10k 
+  run /opt/puppetlabs/bin/r10k
   [ "$status" -eq 0 ]
 }
 

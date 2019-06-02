@@ -2,10 +2,10 @@
 import groovy.json.JsonSlurper
 
 buildscript {
-  repositories { 
-    mavenCentral() 
+  repositories {
+    mavenCentral()
   }
-  dependencies { 
+  dependencies {
     classpath 'com.aestasit.infrastructure.sshoogr:sshoogr:0.9.18'
     classpath 'com.aestasit.infrastructure.sshoogr:sshoogr-gradle:0.9.18'
   }
@@ -27,21 +27,21 @@ ext {
     stateFile.exists() ? new JsonSlurper().parse(stateFile) : [:]
   }
 
-  getServerIp = { 
+  getServerIp = {
     if (project.isVagrant()) {
       return '192.168.56.10'
       // return '192.168.1.37'
     } else {
       return project.getTerraformState()?.modules?.first()?.resources?.findAll { it.key.startsWith 'aws_instance.test_server' }?.collect { it?.value?.primary?.attributes?.public_ip }?.find() ?: '127.0.0.1'
-    }    
+    }
   }
 
-  getServerUser = { 
+  getServerUser = {
     if (project.isVagrant()) {
       return 'vagrant'
     } else {
       return 'ubuntu'
-    }    
+    }
   }
 
 }
@@ -50,8 +50,8 @@ sshOptions {
   defaultPort       = 22
   defaultPassword   = ''
   if (project.isVagrant()) {
-    defaultKeyFile  = file('.vagrant/machines/default/virtualbox/private_key')    
-    // defaultKeyFile  = file('.vagrant/machines/default/hyperv/private_key')    
+    defaultKeyFile  = file('.vagrant/machines/default/virtualbox/private_key')
+    // defaultKeyFile  = file('.vagrant/machines/default/hyperv/private_key')
   } else {
     defaultKeyFile  = file('test.key')
   }
@@ -64,12 +64,16 @@ sshOptions {
   }
 }
 
+task terraformInit(type: Exec) {
+  commandLine 'terraform', 'init'
+}
 
 task createServer(type: Exec) {
   if (project.isVagrant()) {
     commandLine 'vagrant', 'up'
   } else {
-    commandLine 'terraform', 'apply'
+    dependsOn terraformInit
+    commandLine 'terraform', 'apply', '-auto-approve'
   }
 }
 
@@ -88,6 +92,18 @@ task uploadTests {
 
 uploadTests.mustRunAfter createServer
 
+task smokeTests {
+  doLast {
+    remoteSession {
+      user = project.getServerUser()
+      host = project.getServerIp()
+      exec(command: 'ansible --version', failOnError: false)
+      exec(command: 'terraform version', failOnError: false)
+      exec(command: 'transcrypt --version', failOnError: false)
+    }
+  }
+}
+
 task runTests {
   doLast {
     buildDir.mkdirs()
@@ -96,7 +112,7 @@ task runTests {
       host = project.getServerIp()
       def result = exec(command: 'bats -t /tmp/test.bats', failOnError: false)
       scp {
-        from { 
+        from {
           remoteFile '/tmp/puppet.output'
           remoteFile '/tmp/puppet-module.output'
         }
