@@ -1,0 +1,96 @@
+{
+  "variables": {
+    "cpu": "2",
+    "ram_size": "2048",
+    "disk_size": "40000",
+    "switch_name": "external-wifi",
+    "iso_checksum": "34416ff83179728d54583bf3f18d42d2",
+    "iso_checksum_type": "md5",
+    "iso_url": "http://cdimage.ubuntu.com/releases/18.04.2/release/ubuntu-18.04.2-server-amd64.iso"
+  },
+  "builders": [
+    {
+      "type": "hyperv-iso",
+      "vm_name": "devops-ubuntu-1604",
+      "boot_command": [
+        "<esc><wait10><esc><esc><enter><wait10><wait10><wait10>",
+        "linux /install/vmlinuz ",
+        "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/ubuntu_16.04_preseed_hyperv.cfg",
+        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+        "hostname=devops-ubuntu-1604 ",
+        "fb=false debconf/frontend=noninteractive ",
+        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+        "keyboard-configuration/variant=USA console-setup/ask_detect=false <enter>",
+        "initrd /install/initrd.gz<enter>",
+        "boot<enter>"
+      ],
+      "boot_wait": "20s",
+      "disk_size": "{{ user `disk_size` }}",
+      "http_directory": "http",
+      "guest_additions_mode":"disable",
+      "memory": "{{ user `ram_size` }}",
+      "cpus": "{{ user `cpu` }}",
+      "output_directory": "./.output/{{ build_type }}",
+      "generation": 2,
+      "enable_secure_boot": false,
+      "enable_dynamic_memory": true,
+      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_checksum_type": "{{ user `iso_checksum_type` }}",
+      "iso_url": "{{ user `iso_url` }}",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_timeout": "10000s",
+      "ssh_port": 22,
+      "switch_name": "{{ user `switch_name` }}",
+      "shutdown_command": "echo 'shutdown -P now' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "files",
+      "destination": "/tmp/files"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | sudo -S bash -ex '{{ .Path }}'",
+      "override": {
+        "hyperv-iso": {
+          "scripts": [
+            "scripts/ubuntu/base.sh",
+            "scripts/ubuntu/vagrant.sh",
+            "scripts/ubuntu/hyperv.sh",
+            "scripts/ubuntu/git.sh",
+            "scripts/ubuntu/consul.sh",
+            "scripts/ubuntu/packer.sh",
+            "scripts/ubuntu/fabric.sh",
+            "scripts/ubuntu/languages/groovy.sh",
+            "scripts/ubuntu/languages/nodejs.sh",
+            "scripts/ubuntu/languages/ruby.sh",
+            "scripts/ubuntu/provisioning/puppet.sh",
+            "scripts/ubuntu/provisioning/ansible.sh",
+            "scripts/ubuntu/provisioning/chef.sh",
+            "scripts/ubuntu/containers/docker.sh",
+            "scripts/ubuntu/containers/kubernetes.sh",
+            "scripts/ubuntu/clouds/aws-cli.sh",
+            "scripts/ubuntu/clouds/gcp-cli.sh",
+            "scripts/ubuntu/clouds/terraform.sh",
+            "scripts/ubuntu/testing/bats.sh",
+            "scripts/ubuntu/testing/serverspec.sh",
+            "scripts/ubuntu/testing/goss.sh",
+            "scripts/ubuntu/disable-auto-updates.sh",
+            "scripts/ubuntu/cleanup.sh",
+            "scripts/ubuntu/zerodisk.sh"          ]
+        }
+      }
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "output": ".output/devops-ubuntu-16-04-x64-{{ .Provider }}-{{ isotime \"2006-01-02\" }}.box"
+      }
+    ]
+  ]
+}
