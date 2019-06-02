@@ -17,7 +17,7 @@
     },
     {
       "type": "shell",
-      "execute_command": "sudo -S bash -xe '{{.Path}}'",
+      "execute_command": "sudo -S bash -ex '{{.Path}}'",
       "expect_disconnect": true,
       "override": {
         "amazon-ebs": {

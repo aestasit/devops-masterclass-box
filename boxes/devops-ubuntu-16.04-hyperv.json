@@ -53,7 +53,7 @@
     },
     {
       "type": "shell",
-      "execute_command": "echo 'vagrant' | sudo -S sh '{{ .Path }}'",
+      "execute_command": "echo 'vagrant' | sudo -S bash -ex '{{ .Path }}'",
       "override": {
         "hyperv-iso": {
           "scripts": [
