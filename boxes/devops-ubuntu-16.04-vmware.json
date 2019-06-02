@@ -3,9 +3,9 @@
     "cpu": "2",
     "ram_size": "2048",
     "disk_size": "40000",
-    "iso_checksum": "6a7f31eb125a0b2908cf2333d7777c82",
+    "iso_checksum": "ac8a79a86a905ebdc3ef3f5dd16b7360",
     "iso_checksum_type": "md5",
-    "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.4-server-amd64.iso"
+    "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.6-server-amd64.iso"
   },
   "builders": [
     {
