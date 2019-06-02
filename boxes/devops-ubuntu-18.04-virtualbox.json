@@ -3,7 +3,6 @@
     "cpu": "2",
     "ram_size": "2048",
     "disk_size": "40000",
-    "switch_name": "external-wifi",
     "iso_checksum": "34416ff83179728d54583bf3f18d42d2",
     "iso_checksum_type": "md5",
     "iso_url": "http://cdimage.ubuntu.com/releases/18.04.2/release/ubuntu-18.04.2-server-amd64.iso"
@@ -74,6 +73,7 @@
             "scripts/ubuntu/virtualbox.sh",
             "scripts/ubuntu/git.sh",
             "scripts/ubuntu/consul.sh",
+            "scripts/ubuntu/packer.sh",
             "scripts/ubuntu/fabric.sh",
             "scripts/ubuntu/languages/groovy.sh",
             "scripts/ubuntu/languages/nodejs.sh",

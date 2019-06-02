@@ -20,7 +20,7 @@ usermod -aG docker "$(logname)"
 cp /tmp/files/daemon.json /etc/docker
 
 echo "*** Installing Docker Compose ***"
-su -c "curl -sSL https://github.com/docker/compose/releases/download/1.23.2/docker-compose-Linux-x86_64 > /usr/local/bin/docker-compose"
+su -c "curl -sSL https://github.com/docker/compose/releases/download/1.24.0/docker-compose-Linux-x86_64 > /usr/local/bin/docker-compose"
 chmod +x /usr/local/bin/docker-compose
 
 echo "*** Checking Docker installation ***"

@@ -62,6 +62,7 @@
             "scripts/ubuntu/hyperv.sh",
             "scripts/ubuntu/git.sh",
             "scripts/ubuntu/consul.sh",
+            "scripts/ubuntu/packer.sh",
             "scripts/ubuntu/fabric.sh",
             "scripts/ubuntu/languages/groovy.sh",
             "scripts/ubuntu/languages/nodejs.sh",

@@ -3,7 +3,7 @@
     {
       "type": "amazon-ebs",
       "region": "eu-west-1",
-      "source_ami": "ami-08d658f84a6d84a80",
+      "source_ami": "ami-0e312952b4cc28a7f",
       "instance_type": "m3.medium",
       "ssh_username": "ubuntu",
       "ami_name": "devops-ubuntu-18-04-x64 {{ isotime \"2006-01-02\" }}"
@@ -17,7 +17,7 @@
     },
     {
       "type": "shell",
-      "execute_command": "sudo -S sh '{{.Path}}'",
+      "execute_command": "sudo -S bash -xe '{{.Path}}'",
       "expect_disconnect": true,
       "override": {
         "amazon-ebs": {
@@ -26,6 +26,7 @@
             "scripts/ubuntu/base.sh",
             "scripts/ubuntu/git.sh",
             "scripts/ubuntu/consul.sh",
+            "scripts/ubuntu/packer.sh",
             "scripts/ubuntu/fabric.sh",
             "scripts/ubuntu/languages/groovy.sh",
             "scripts/ubuntu/languages/nodejs.sh",

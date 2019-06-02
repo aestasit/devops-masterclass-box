@@ -11,5 +11,7 @@ sudo -H pip install -U pip
 hash -r pip
 
 echo "*** Installing fabric ***"
+sudo -H pip install -U pyopenssl
 sudo -H pip install -U Crypto
+sudo -H pip install -U cryptography
 sudo -H pip install -U fabric

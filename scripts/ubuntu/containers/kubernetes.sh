@@ -13,16 +13,16 @@ echo "*** Checking kubectl installation ***"
 kubectl version
 
 echo "*** Installing minikube ***"
-curl -Lo minikube https://github.com/kubernetes/minikube/releases/download/v0.26.1/minikube-linux-amd64 
-chmod +x minikube 
+curl -Lo minikube https://github.com/kubernetes/minikube/releases/download/v1.1.0/minikube-linux-amd64
+chmod +x minikube
 mv minikube /usr/local/bin/
 
 echo "*** Checking minicube installation ***"
 minikube version
 
 echo "*** Installing helm ***"
-curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.13.0-linux-amd64.tar.gz
-tar -xvzf helm-v2.13.0-linux-amd64.tar.gz
+curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.14.0-linux-amd64.tar.gz
+tar -xvzf helm-v2.14.0-linux-amd64.tar.gz
 cp ./linux-amd64/helm /usr/local/bin
 cp ./linux-amd64/tiller /usr/local/bin
 rm -rf ./linux-amd64

@@ -3,7 +3,6 @@
     "cpu": "2",
     "ram_size": "2048",
     "disk_size": "40000",
-    "switch_name": "external-wifi",
     "iso_checksum": "6a7f31eb125a0b2908cf2333d7777c82",
     "iso_checksum_type": "md5",
     "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.4-server-amd64.iso"
@@ -75,6 +74,7 @@
             "scripts/ubuntu/vagrant.sh",
             "scripts/ubuntu/git.sh",
             "scripts/ubuntu/consul.sh",
+            "scripts/ubuntu/packer.sh",
             "scripts/ubuntu/fabric.sh",
             "scripts/ubuntu/provisioning/puppet.sh",
             "scripts/ubuntu/provisioning/ansible.sh",

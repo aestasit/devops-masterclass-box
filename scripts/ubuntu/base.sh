@@ -45,5 +45,5 @@ sudo -H apt-get -qq -y install -o=Dpkg::Use-Pty=0 apt-transport-https ca-certifi
 
 sudo -H apt-get -y -qq install -o=Dpkg::Use-Pty=0 httpie
 
-wget --quiet --no-check-certificate https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 -O /usr/bin/jq
+wget --quiet --no-check-certificate https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -O /usr/bin/jq
 chmod a+x /usr/bin/jq
